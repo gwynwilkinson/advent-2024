@@ -1,35 +1,11 @@
 /* Solved 1 Dec 2024
 
-Had to use python for part 2 as im getting the wrong answer in c++ somehow.
+Briefly had a problem with c++ file reading as on the final iteration
+the line file >> file_str didnt do anything, so it added the last value to both lists.
+This caused the part 2 answer to be out by about 500,000.
 
-TODO - fix part 2
-
-part 1 answer: 3508942
-part 2 answer: 26593248
-
-Correct Python code:
-    left_list = []
-    right_list = []
-    count_list = []
-    similarity_list = []
-    with open("input.txt", 'r') as f:
-        while data := f.readline():
-            left, right = data.split()
-            left_list.append(left)
-            right_list.append(right)
-
-    for left_num in left_list:
-        count = 0
-        for right_num in right_list:
-            if left_num == right_num:
-                count=count+1
-        count_list.append(count)
-
-    for left, right, count in zip(left_list, right_list, count_list):
-        similarity_list.append(int(left) * count)
-
-    print(sum(similarity_list))
-
+This just seems like ifstream jank so i just deleted the last line, but we need
+a robust pattern to deal with that next time.
 */
 
 #include <iostream>
@@ -108,13 +84,5 @@ int main() {
     }
 
     std::cout << "The answer to Part 2 is: " << similarity_sum << std::endl;
-
-    // for (int i=0;i<first_list.size();i++){
-    //     std::cout << first_list.at(i) << " " << second_list.at(i) << " " << distance_list.at(i) << " " << count_list.at(i) << " " << similarity_list.at(i) << std::endl;
-    // }
-    // for (int i=0;i<first_list.size();i++){
-    //     std::cout << first_list.at(i) << " " << count_list.at(i) << " " << similarity_list.at(i) << std::endl;
-    // }
-    
     return 0;
     }
